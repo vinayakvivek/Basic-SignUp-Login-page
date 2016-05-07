@@ -17,10 +17,10 @@
 
 	if (array_key_exists("submit", $_POST)) {
 
-		$server = "localhost";
-		$username = "diary";
-		$password = "password";
-		$dbname = "diary";
+		$server = "<server_name>";
+		$username = "<user_name>";
+		$password = "<password>";
+		$dbname = "<database_name>";
 
 		$link = mysqli_connect($server, $username, $password, $dbname);
 
