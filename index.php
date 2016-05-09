@@ -44,7 +44,7 @@
 				$email = mysqli_real_escape_string($link, $_POST['email']);
 				$password = mysqli_real_escape_string($link, $_POST['password']);
 
-				$query = "SELECT id FROM `diary` WHERE email = '$email' LIMIT 1";
+				$query = "SELECT id FROM `".$dbname."` WHERE email = '$email' LIMIT 1";
 
 				$result = mysqli_query($link, $query);
 
@@ -52,7 +52,7 @@
 					$error = "That email address is already taken";
 				} else {
 
-					$query = "INSERT INTO `diary` (`email`, `password`) VALUES ('$email', '$password')";
+					$query = "INSERT INTO `".$dbname."` (`email`, `password`) VALUES ('$email', '$password')";
 
 					if (!mysqli_query($link, $query)) {
 						$error = "<p>Could not sign you up, pls try again later.<p>";
@@ -61,7 +61,7 @@
 						$id = intVal(mysqli_insert_id($link));
 						$hashedPassword = md5(md5(mysqli_insert_id($link)).$_POST['password']);
 
-						$query = "UPDATE `diary` SET password = '$hashedPassword' WHERE id = $id LIMIT 1";
+						$query = "UPDATE `".$dbaname."` SET password = '$hashedPassword' WHERE id = $id LIMIT 1";
 
 						mysqli_query($link, $query);
 
@@ -84,7 +84,7 @@
 			else if ($_POST['signUp'] == '0') {
 
 				$email = mysqli_real_escape_string($link, $_POST['email']);
-				$query = "SELECT * FROM `diary` WHERE email = '$email'";
+				$query = "SELECT * FROM `".$dbaname."` WHERE email = '$email'";
 
 				$result = mysqli_query($link, $query);
 				$row = mysqli_fetch_array($result);
